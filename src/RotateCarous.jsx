@@ -19,7 +19,7 @@ class RotateCarous extends Component {
                             {/*<!-- Wrapper for slides -->*/}
                             
                             
-                            <div className="carousel-inner">
+                            <div className="carousel-inner" id="mainTextArea">
 
                                         <div className="item active">
                                                 <div className="holder col-sm-8">

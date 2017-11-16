@@ -5,16 +5,33 @@ import React, { Component } from 'react';
 class NavBar extends Component {
 
 
+  constructor(props){
+    super(props)
+    this.state = {
+      fixed: false
+    }
+  }
+
+componentDidMount() { window.addEventListener('scroll', this.handleScroll) }
+componentWillUnmount() { window.removeEventListener('scroll', this.handleScroll) }
+
+handleScroll = () => {
+  // console.log(window.scrollY)
+  console.log(this.nav.getBoundingClientRect().top)
+  if (this.nav.getBoundingClientRect().top < 0) {
+    this.setState({
+      fixed: true
+    })
+  }
+}
+
     render() {
       const navStyle = {
-          position: "sticky",
-          top: "0px",
-          zIndex: "2"
+          position: this.state.fixed ? "fixed" : "static",
+          top: "0px"
       }
         return (
-
-
-        <nav className="navbar navbar-inverse" style={navStyle}>
+        <nav className="navbar navbar-inverse" style={navStyle} ref={(nav) => { this.nav = nav;}}>
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
